@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #e0f4ff 0%, #fde8f5 50%, #fff5e6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.6;
+            animation: float-up 8s infinite ease-in-out;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #60a5fa, #f472b6, #fbbf24);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            color: #64748b;
+            font-family: 'Caveat', cursive;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            aspect-ratio: 1;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.3);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .message-box {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.6s both;
+            border: 3px solid #bfdbfe;
+        }
+
+        .message-box h2 {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .message-box p {
+            font-size: 1.2rem;
+            color: #475569;
+            line-height: 1.8;
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+        }
+
+        .date-details {
+            background: linear-gradient(135deg, #dbeafe 0%, #fce7f3 100%);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out 0.9s both;
+            border: 3px solid #93c5fd;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .date-details h3 {
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 25px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .date-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: scale(1.1);
+        }
+
+        .info-item .label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .info-item .value {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-out 1.2s both;
+            position: relative;
+            min-height: 120px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 20px 60px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+            color: white;
+            position: absolute;
+            transition: all 0.2s ease;
+        }
+
+        .btn-no:hover {
+            transform: scale(0.9);
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f472b6;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            animation: bounceIn 0.6s ease-out;
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 4px solid #60a5fa;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-message h2 {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .success-message p {
+            font-size: 1.5rem;
+            color: #64748b;
+            font-family: 'Caveat', cursive;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            animation: rotate 2s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-20deg);
+            }
+            75% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .date-details h3 {
+                font-size: 1.8rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 15px 40px;
+                font-size: 1.5rem;
+            }
+
+            .btn-no {
+                position: relative;
+            
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            
+            <p>I have something special to ask you... 💙</p>
+			<h1>Will You Go On A Date With Me?</h1>
+			<p style="font-size: 100px;"> &#129402; &#129402; &#129402; </p>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="photo-gallery">
+		
+            <div class="photo-item">
+                <img src="images/photo1.jpg" alt="Photo 1">
+            </div>
+            <div class="photo-item">
+                <img src="images/photo2.jpg" alt="Photo 2">
+            </div>
+            <div class="photo-item">
+              <img src="images/photo3.jpg" alt="Photo 3">
+            </div>
+        </div>
+
+        <!-- Message Box -->
+        <div class="message-box">
+            <h2>FESTIVAL MALL NANAMAN!?</h2>
+            <p>
+                Alam ko kabisado mo na ang bawat baitang ng hagdan patungong Wallflower.
+                Baka kilalang kilala ka pa nga ng mga ale at manong na nagbabantay sa mga botiques.
+                Pero kahit kabisado mo na, sana mag-enjoy ka pa rin. 💙
+            </p>
+        </div>
+
+        <!-- Date Details -->
+        <div class="date-details">
+            <h3>📅 Date Details</h3>
+            <div class="date-info">
+                <div class="info-item">
+                    <div class="label">Date</div>
+                    <div class="value">February 15</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Day</div>
+                    <div class="value">Sunday</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Time</div>
+                    <div class="value">3:00 PM</div>
+                </div>
+            </div>
+            <div class="info-item" style="margin-top: 20px; display: inline-block;">
+                <div class="label">Location</div>
+                <div class="value">Festival Mall, Alabang</div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-container" id="buttonContainer">
+            <button class="btn btn-yes" id="yesBtn" data-testid="yes-button">YES! 💙</button>
+            <button class="btn btn-no" id="noBtn" data-testid="no-button">No...</button>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage" data-testid="success-message">
+            <div class="emoji">🎉</div>
+            <h2>Yay! You Said Yes!</h2>
+            <p>Gumana ang pagmamakaawa! See you on February 15 at 3:00 PM at Festival Mall, Alabang! 💙✨</p>
+            <p style="margin-top: 20px; font-size: 2rem;">Can't wait to spend this special day with you! 😊</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💙', '💗', '💖', '💕', '💝', '💘'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }, 800);
+        }
+
+        // Playful No button behavior
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const buttonContainer = document.getElementById('buttonContainer');
+        let noButtonAttempts = 0;
+
+        noBtn.addEventListener('mouseenter', () => {
+            noButtonAttempts++;
+            
+            // Make Yes button bigger each time
+            const currentScale = 1 + (noButtonAttempts * 0.1);
+            yesBtn.style.transform = `scale(${currentScale})`;
+            
+            // Move No button to random position (avoiding Yes button)
+            const containerRect = buttonContainer.getBoundingClientRect();
+            const noBtnRect = noBtn.getBoundingClientRect();
+            const yesBtnRect = yesBtn.getBoundingClientRect();
+            
+            const maxX = containerRect.width - noBtnRect.width;
+            const maxY = containerRect.height - noBtnRect.height;
+            
+            let randomX, randomY;
+            let attempts = 0;
+            const maxAttempts = 50;
+            
+            // Keep trying until we find a position that doesn't overlap with Yes button
+            do {
+                randomX = Math.random() * maxX;
+                randomY = Math.random() * maxY;
+                attempts++;
+                
+                // Check if this position would overlap with Yes button
+                const noLeft = randomX;
+                const noRight = randomX + noBtnRect.width;
+                const noTop = randomY;
+                const noBottom = randomY + noBtnRect.height;
+                
+                const yesLeft = yesBtnRect.left - containerRect.left;
+                const yesRight = yesBtnRect.right - containerRect.left;
+                const yesTop = yesBtnRect.top - containerRect.top;
+                const yesBottom = yesBtnRect.bottom - containerRect.top;
+                
+                // Add padding to avoid overlap
+                const padding = 20;
+                
+                const noOverlap = (
+                    noRight < yesLeft - padding ||
+                    noLeft > yesRight + padding ||
+                    noBottom < yesTop - padding ||
+                    noTop > yesBottom + padding
+                );
+                
+                if (noOverlap || attempts >= maxAttempts) {
+                    break;
+                }
+            } while (true);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            
+            // Change button text after a few attempts
+            if (noButtonAttempts === 3) {
+                noBtn.textContent = "Maybe yes? 🥺";
+            } else if (noButtonAttempts === 5) {
+                noBtn.textContent = "Pretty please? 💙";
+            } else if (noButtonAttempts >= 7) {
+                noBtn.textContent = "Click YES! 😊";
+            }
+        });
+
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert("Aww, are you sure? Just hover over YES! I promise it'll be fun! 💙");
+        });
+
+        // Yes button - Show success
+        yesBtn.addEventListener('click', () => {
+            // Hide buttons and date details
+            buttonContainer.style.display = 'none';
+            
+            // Create confetti
+            createConfetti();
+            
+            // Show success message
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+            }, 500);
+        });
+
+        // Create confetti effect
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.style.display = 'block';
+            const colors = ['#60a5fa', '#f472b6', '#fbbf24', '#34d399', '#a78bfa'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Initialize
+        createFloatingHearts();
+    </script>
+</body>
+</html>
